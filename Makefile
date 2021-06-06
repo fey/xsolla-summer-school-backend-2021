@@ -1,8 +1,9 @@
 setup:
 	cp -n .env.example .env
 	touch database/database.sqlite
-	php artisan migrate --seed
 	make install
+	php artisan migrate --seed
+
 
 start:
 	php artisan serve --host 0.0.0.0 --port 8000
