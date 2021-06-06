@@ -1,3 +1,7 @@
+image: docker/compose:debian-1.29.1
+services:
+  - docker:dind
+
 stages:
   - build
 
