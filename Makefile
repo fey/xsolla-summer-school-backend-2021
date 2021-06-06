@@ -4,6 +4,12 @@ start:
 install:
 	composer install
 
+test:
+	php artisan test
+
+test-coverage:
+	 XDEBUG_MODE=coverage php artisan test --coverage-clover coverage/logs/clover.xml
+
 generate-ide-helper:
 	php artisan ide-helper:generate
 	php artisan ide-helper:models -n
