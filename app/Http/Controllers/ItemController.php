@@ -25,7 +25,7 @@ class ItemController extends Controller
             'sku' => ['required', 'string', 'max:255', Rule::unique('items', 'sku')],
             'type' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'integer']
+            'price' => ['required', 'integer'],
         ]);
 
         $item->fill($request->all());
@@ -45,7 +45,7 @@ class ItemController extends Controller
             'sku' => ['required', 'string', 'max:255', Rule::unique('items', 'sku')->ignoreModel($item)],
             'type' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'integer']
+            'price' => ['required', 'integer'],
         ]);
 
         $item->fill($data);
