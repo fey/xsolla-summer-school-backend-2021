@@ -19,6 +19,7 @@ build:
     - docker-compose up --abort-on-container-exit
 
 deploy:
+  stage: deploy
   dependencies:
     - build
   when: on_success
