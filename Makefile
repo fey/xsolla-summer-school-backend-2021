@@ -1,8 +1,18 @@
+setup:
+	cp -n .env.example .env
+	touch database/database.sqlite
+	php artisan migrate --seed
+	make install
+
 start:
 	php artisan serve --host 0.0.0.0 --port 8000
 
 install:
 	composer install
+
+check: lint test
+
+ci-check: lint test-coverage
 
 test:
 	php artisan test
@@ -20,3 +30,21 @@ generate-ide-helper:
 	php artisan ide-helper:generate
 	php artisan ide-helper:models -n
 	php artisan ide-helper:meta
+
+compose-build:
+	docker-compose build
+
+compose-start:
+	docker-compose start --abort-on-container-exit
+
+compose-down:
+	docker-compose down
+
+compose-clear:
+	docker-compose down -v
+
+compose-bash:
+	docker-compose run --rm app bash
+
+ci:
+	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci up --abort-on-container-exit

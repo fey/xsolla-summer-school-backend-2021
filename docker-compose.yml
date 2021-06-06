@@ -1,0 +1,12 @@
+---
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerifle.dev
+    image: feycot/xsolla-summer-school-backend-2021-dev
+    volumes:
+    - ./:/app
+    command: ["make", "ci-check"]
