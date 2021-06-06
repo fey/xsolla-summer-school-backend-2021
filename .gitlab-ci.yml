@@ -14,5 +14,5 @@ build:
   stage: build
   script:
     - docker-compose  build
-    - docker-compose run make setup
+    - docker-compose run app make setup
     - docker-compose up --abort-on-container-exit
