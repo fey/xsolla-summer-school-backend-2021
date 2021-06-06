@@ -2,7 +2,7 @@ setup:
 	cp -n .env.example .env
 	touch database/database.sqlite
 	make install
-	php artisan migrate --seed
+	php artisan migrate:fresh --seed
 
 
 start:

@@ -9,6 +9,7 @@ variables:
 
 stages:
   - build
+  - deploy
 
 build:
   stage: build
@@ -16,3 +17,13 @@ build:
     - docker-compose  build
     - docker-compose run app make setup
     - docker-compose up --abort-on-container-exit
+
+deploy:
+  dependencies:
+    - build
+  when: on_success
+  only:
+    - master
+  script:
+    - echo "RUN DEPLOY"
+
