@@ -1,0 +1,21 @@
+FROM php:8.0
+
+WORKDIR /app
+
+RUN apt update
+RUN apt-get install -y libzip-dev sqlite3 racket git libpq-dev curl libcurl4-openssl-dev pkg-config libxml2-dev
+RUN docker-php-ext-install zip pdo pdo_pgsql bcmath pgsql exif curl xml
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+EXPOSE 8000
+
+COPY composer.json .
+COPY composer.lock .
+COPY . .
+
+RUN composer install --no-dev --optimize-autoloader
+
+ENV LOG_CHANNEL=errorlog
+
+CMD make start

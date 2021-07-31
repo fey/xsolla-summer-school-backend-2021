@@ -47,6 +47,9 @@ compose-clear:
 compose-bash:
 	docker-compose run --rm app bash
 
+build-prod:
+	docker-compose -f docker-compose.production.yml build app
+
 ci:
 	make compose-build
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci run make setup
