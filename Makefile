@@ -55,7 +55,7 @@ prod-push:
 
 ci:
 	make compose-build
-	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci run make setup
+	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci run --rm app make setup
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci up --abort-on-container-exit
 
 deploy-heroku:

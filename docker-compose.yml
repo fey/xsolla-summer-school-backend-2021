@@ -5,7 +5,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerifle.dev
+      dockerfile: Dockerfile.dev
     image: feycot/xsolla-summer-school-backend-2021-dev
     volumes:
     - ./:/app
