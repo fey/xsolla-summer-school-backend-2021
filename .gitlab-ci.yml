@@ -18,6 +18,9 @@ build:
     - docker-compose run app make setup
     - docker-compose up --abort-on-container-exit
 
+heroku:
+  
+
 deploy:
   stage: deploy
   dependencies:
@@ -27,4 +30,3 @@ deploy:
     - master
   script:
     - echo "RUN DEPLOY"
-

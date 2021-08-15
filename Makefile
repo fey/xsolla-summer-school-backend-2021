@@ -1,9 +1,9 @@
 setup:
 	cp -n .env.example .env
 	touch database/database.sqlite
+	php artisan key:gen
 	make install
 	php artisan migrate:fresh --seed
-
 
 start:
 	php artisan serve --host 0.0.0.0 --port 8000
@@ -47,10 +47,16 @@ compose-clear:
 compose-bash:
 	docker-compose run --rm app bash
 
-build-prod:
+prod-build:
 	docker-compose -f docker-compose.production.yml build app
+
+prod-push:
+	docker-compose -f docker-compose.production.yml push app
 
 ci:
 	make compose-build
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci run make setup
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci up --abort-on-container-exit
+
+deploy:
+	git push heroku
