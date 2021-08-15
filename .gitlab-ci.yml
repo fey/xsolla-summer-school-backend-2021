@@ -11,9 +11,7 @@ build:
     COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
     COMPOSE_FILE: docker-compose.yml
   script:
-    - docker-compose  build
-    - docker-compose run app make setup
-    - docker-compose up --abort-on-container-exit
+    - make ci
 
 deploy_heroku:
   stage: deploy
