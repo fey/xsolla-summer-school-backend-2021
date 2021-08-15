@@ -4,7 +4,7 @@ stages:
 
 build:
   stage: build
-  image: docker
+  image: docker/compose:debian-1.29.1
   services:
     - docker:dind
   variables:
