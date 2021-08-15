@@ -18,14 +18,23 @@ build:
     - docker-compose run app make setup
     - docker-compose up --abort-on-container-exit
 
-heroku:
-  
-
-deploy:
+deploy_heroku:
   stage: deploy
   dependencies:
     - build
-  when: on_success
+  when: manual
+  only:
+    - master
+  before_script:
+    - curl https://cli-assets.heroku.com/install.sh | sh
+  script:
+    - make deploy
+
+deploy_prod:
+  stage: deploy
+  dependencies:
+    - build
+  when: manual
   only:
     - master
   script:
