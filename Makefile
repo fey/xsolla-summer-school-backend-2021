@@ -1,8 +1,8 @@
 setup:
 	cp -n .env.example .env
 	touch database/database.sqlite
-	php artisan key:gen
 	make install
+	php artisan key:gen
 	php artisan migrate:fresh --seed
 
 start:
