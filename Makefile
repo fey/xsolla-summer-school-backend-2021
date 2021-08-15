@@ -58,5 +58,6 @@ ci:
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci run make setup
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci up --abort-on-container-exit
 
-deploy:
+deploy-heroku:
+	heroku git:remote -a feycot-xsolla-2021
 	git push heroku HEAD:master

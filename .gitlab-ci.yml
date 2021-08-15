@@ -24,9 +24,8 @@ deploy_heroku:
   before_script:
     - cat $HEROKU_AUTH_DATA > ~/.netrc
     - curl https://cli-assets.heroku.com/install.sh | sh
-    - heroku git:remote -a feycot-xsolla-2021
   script:
-    - make deploy
+    - make deploy-heroku
 
 deploy_prod:
   stage: deploy
