@@ -23,7 +23,7 @@ deploy_heroku:
     - master
   before_script:
     - echo $HEROKU_AUTH_DATA > ~/.netrc
-    - echo ~/.netrc
+    - cat ~/.netrc
     - git status
     - git remote -v
     - curl https://cli-assets.heroku.com/install.sh | sh
