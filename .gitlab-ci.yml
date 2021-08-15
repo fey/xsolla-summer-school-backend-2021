@@ -24,7 +24,8 @@ deploy_heroku:
     - master
   before_script:
     - echo $HEROKU_AUTH_DATA > ~/.net.rc
-    - ls -la
+    - git status
+    - git remote -v
     - curl https://cli-assets.heroku.com/install.sh | sh
     - heroku git:remote -a feycot-xsolla-2021
   script:
