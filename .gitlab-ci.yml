@@ -8,20 +8,21 @@ variables:
   COMPOSE_FILE: docker-compose.yml
 
 stages:
-  - build
+  # - build
   - deploy
 
-build:
-  stage: build
-  script:
-    - docker-compose  build
-    - docker-compose run app make setup
-    - docker-compose up --abort-on-container-exit
+# build:
+#   stage: build
+#   script:
+#     - docker-compose  build
+#     - docker-compose run app make setup
+#     - docker-compose up --abort-on-container-exit
 
 deploy_heroku:
+  image: ubuntu:20.04
   stage: deploy
-  dependencies:
-    - build
+  # dependencies:
+  #   - build
   when: manual
   only:
     - master
@@ -32,8 +33,8 @@ deploy_heroku:
 
 deploy_prod:
   stage: deploy
-  dependencies:
-    - build
+  # dependencies:
+  #   - build
   when: manual
   only:
     - master
