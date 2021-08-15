@@ -22,7 +22,7 @@ deploy_heroku:
   only:
     - master
   before_script:
-    - echo $HEROKU_AUTH_DATA > ~/.netrc
+    - cat $HEROKU_AUTH_DATA > ~/.netrc
     - cat ~/.netrc
     - git status
     - git remote -v
