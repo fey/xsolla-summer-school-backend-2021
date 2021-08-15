@@ -1,18 +1,15 @@
-default:
-  image: docker/compose:debian-1.29.1
-  services:
-    - docker:dind
-
-variables:
-  COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
-  COMPOSE_FILE: docker-compose.yml
-
 stages:
   # - build
   - deploy
 
 # build:
 #   stage: build
+#   image: docker/compose:debian-1.29.1
+#   services:
+#     - docker:dind
+#   variables:
+#     COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
+#     COMPOSE_FILE: docker-compose.yml
 #   script:
 #     - docker-compose  build
 #     - docker-compose run app make setup
@@ -27,6 +24,7 @@ deploy_heroku:
   only:
     - master
   before_script:
+    - apt install curl
     - curl https://cli-assets.heroku.com/install.sh | sh
   script:
     - make deploy
