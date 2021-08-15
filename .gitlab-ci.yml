@@ -23,9 +23,6 @@ deploy_heroku:
     - master
   before_script:
     - cat $HEROKU_AUTH_DATA > ~/.netrc
-    - cat ~/.netrc
-    - git config --global user.name "feycot"
-    - git config --global user.email feycot@gmail.com
     - curl https://cli-assets.heroku.com/install.sh | sh
     - heroku git:remote -a feycot-xsolla-2021
   script:
