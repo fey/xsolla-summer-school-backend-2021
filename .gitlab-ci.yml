@@ -4,6 +4,9 @@ stages:
 
 build:
   stage: build
+  image: docker
+  services:
+    - docker:dind
   variables:
     COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
     COMPOSE_FILE: docker-compose.yml
