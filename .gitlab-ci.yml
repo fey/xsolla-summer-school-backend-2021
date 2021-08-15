@@ -1,7 +1,6 @@
 stages:
   # - build
   - deploy
-
 # build:
 #   stage: build
 #   image: docker/compose:debian-1.29.1
@@ -23,7 +22,7 @@ deploy_heroku:
   only:
     - master
   before_script:
-    - echo $HEROKU_AUTH_DATA > ~/.net.rc
+    - echo $HEROKU_AUTH_DATA > ~/.netrc
     - git status
     - git remote -v
     - curl https://cli-assets.heroku.com/install.sh | sh
