@@ -1,26 +1,27 @@
 stages:
-  # - build
+  - build
   - deploy
-# build:
-#   stage: build
-#   image: docker/compose:debian-1.29.1
-#   services:
-#     - docker:dind
-#   variables:
-#     COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
-#     COMPOSE_FILE: docker-compose.yml
-#   script:
-#     - docker-compose  build
-#     - docker-compose run app make setup
-#     - docker-compose up --abort-on-container-exit
+
+build:
+  stage: build
+  image: docker/compose:debian-1.29.1
+  services:
+    - docker:dind
+  variables:
+    COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
+    COMPOSE_FILE: docker-compose.yml
+  script:
+    - docker-compose  build
+    - docker-compose run app make setup
+    - docker-compose up --abort-on-container-exit
 
 deploy_heroku:
   stage: deploy
-  # dependencies:
-  #   - build
-  # when: manual
+  dependencies:
+    - build
   only:
     - master
+  when: on_success
   before_script:
     - cat $HEROKU_AUTH_DATA > ~/.netrc
     - curl https://cli-assets.heroku.com/install.sh | sh
@@ -29,8 +30,8 @@ deploy_heroku:
 
 deploy_prod:
   stage: deploy
-  # dependencies:
-  #   - build
+  dependencies:
+    - build
   when: manual
   only:
     - master
