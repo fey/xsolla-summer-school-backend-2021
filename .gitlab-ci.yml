@@ -10,6 +10,8 @@ build:
   variables:
     COMPOSE_PROJECT_NAME: xsolla-summer-school-backend-2021-ci
     COMPOSE_FILE: docker-compose.yml
+  before_script:
+    - apt update && apt install make
   script:
     - make ci
 
