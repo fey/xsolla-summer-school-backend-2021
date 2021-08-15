@@ -59,4 +59,4 @@ ci:
 	docker-compose -f docker-compose.yml -p xsolla-summer-school-backend-2021-ci up --abort-on-container-exit
 
 deploy:
-	git push heroku
+	git push heroku HEAD:master
