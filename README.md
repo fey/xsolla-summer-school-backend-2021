@@ -16,7 +16,6 @@ Demo: https://feycot-xsolla-2021.herokuapp.com/
 ```
 
 Example
-
 ```
 http https://feycot-xsolla-2021.herokuapp.com/api/items
 
