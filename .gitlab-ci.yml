@@ -36,4 +36,4 @@ deploy_prod:
   only:
     - master
   script:
-    - echo "RUN DEPLOY"
+    - make deploy-prod
