@@ -35,5 +35,7 @@ deploy_prod:
   when: manual
   only:
     - master
+  before_script:
+    - apt install ansible
   script:
     - make deploy-prod
