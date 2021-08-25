@@ -1,0 +1,5 @@
+app_key: "{{ vault_app_key }}"
+database_url: "{{ vault_database_url }}"
+db_connection: "{{ vault_db_connection }}"
+
+datadog_api_key: "{{ vault_datadog_api_key }}"

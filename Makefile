@@ -61,3 +61,6 @@ ci:
 deploy-heroku:
 	heroku git:remote -a feycot-xsolla-2021
 	git push heroku HEAD:master
+
+deploy-prod:
+	make -C ansible deploy

@@ -1,0 +1,57 @@
+- name: Setting up servers
+  hosts: all
+  tags:
+    - setup_server
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install pip
+      include_role:
+        name: geerlingguy.pip
+
+- name: Deploy application
+  hosts: webservers
+  gather_facts: no
+  tags:
+    - deploy
+  tasks:
+    - name: create environment variables from template
+      template:
+        src: env.j2
+        dest: '.env'
+
+    - name: Run migrations
+      run_once: yes
+      community.docker.docker_container:
+        container_default_behavior: "compatibility"
+        name: "{{ app_name }}"
+        image: "{{ app_image }}"
+        state: started
+        restart: yes
+        command: php artisan migrate --force
+        detach: no
+        env_file: .env
+
+    - name: Run application container
+      community.docker.docker_container:
+        name: "{{ app_name }}"
+        image: "{{ app_image }}"
+        state: started
+        restart: yes
+        ports:
+          - "{{ app_port }}:8000"
+        healthcheck:
+          interval: 5s
+          retries: 3
+          test: curl -f http://localhost:{{ app_port }}/ || exit 1
+          timeout: 5s
+        env_file: .env
+
+- name: Setting up monitoring
+  hosts: all
+  roles:
+    - role: datadog.datadog
+  tags:
+    - monitoring
